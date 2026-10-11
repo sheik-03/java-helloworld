@@ -32,11 +32,11 @@ pipeline{
                 sh 'mvn exec:java'
             }
         }
-        post{
-            success{
+        post {
+            success {
                 echo 'java successfully run'
             }
-            failure{
+            failure {
                 echo 'java failure'
             }
         }
