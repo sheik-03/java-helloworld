@@ -4,7 +4,13 @@ pipeline{
     tools{
         mvn : 'Maven'
     }
+    
     stages{
+        stage('github'){
+            steps{
+               git credentialsId: 'hello_sheik', url: 'https://github.com/sheik-03/java-helloworld.git' 
+            }
+        }
         stage('build'){
             steps{
                 sh 'mvn --version'
