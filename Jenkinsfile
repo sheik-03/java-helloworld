@@ -1,43 +1,43 @@
-pipeline{
+pipeline {
     agent any
 
-    tools{
+    tools {
         maven 'Maven'
     }
     
-    stages{
-        stage('github'){
-            steps{
+    stages {
+        stage('GitHub') {
+            steps {
                git credentialsId: 'hello_sheik', url: 'https://github.com/sheik-03/java-helloworld.git' 
             }
         }
-        stage('build'){
+        stage('build') {
             steps{
                 sh 'mvn --version'
                 echo 'maven version successfully installed'
             }
         }
-        stage('test'){
+        stage('test') {
             steps{
                 sh 'mvn clean compile'
             }
         }
-        stage('deploy'){
-            steps{
+        stage('deploy') {
+            steps {
                 sh 'mvn test'
             }
         }
-        stage('runthe helloworld'){
-            steps{
+        stage('runthe helloworld') {
+            steps {
                 sh 'mvn exec:java'
             }
         }
         post {
             success {
-                echo 'java successfully run'
+                sh 'echo java successfully run'
             }
             failure {
-                echo 'java failure'
+               sh 'echo java failure'
             }
         }
         
